@@ -1,0 +1,725 @@
+<div class="water-article">
+  <style>
+    .water-article {
+      --ink: #1f3342;
+      --text: #3a4a56;
+      --muted: #6b7882;
+      --line: #dfe7ea;
+      --soft: #f4f8f5;
+      --soft-gray: #f7f7f6;
+      --cream: #faf2df;
+      --blue: #32a6d9;
+      --danger-bg: #fff5f3;
+      --danger-line: #f0c7bd;
+      --danger-ink: #8b3428;
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: visible;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+      line-height: 1.78;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      background: #fff;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+    }
+
+    .water-article *,
+    .water-article *::before,
+    .water-article *::after {
+      box-sizing: border-box;
+    }
+
+    .water-article a {
+      color: inherit;
+    }
+
+    .wa-wrap {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 54px 20px 72px;
+    }
+
+    .wa-label {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 0 16px;
+      padding: 7px 12px;
+      border: 1px solid rgba(50, 166, 217, 0.28);
+      border-radius: 999px;
+      color: #137aa7;
+      background: #f2fbff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .wa-hero h1 {
+      margin: 0 0 22px;
+      color: var(--ink);
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.28;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .wa-subtitle {
+      margin: 0 0 28px;
+      color: var(--text);
+      font-size: 19px;
+      line-height: 1.75;
+      font-weight: 500;
+    }
+
+    .wa-figure {
+      margin: 0 0 30px;
+    }
+
+    .wa-image-slot {
+      display: flex;
+      min-height: 280px;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      border: 1px dashed #b9c9d1;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #fbf7eb 0%, #fffdf8 100%);
+      color: var(--muted);
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .wa-image-slot strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 17px;
+    }
+
+    .wa-figure img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border: 0;
+    }
+
+    .wa-caption {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .wa-lead {
+      margin: 34px 0 30px;
+      padding: 22px 24px;
+      border-radius: 22px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.72;
+      font-weight: 700;
+    }
+
+    .wa-toc {
+      margin: 0 0 58px;
+      padding: 28px 28px 30px;
+      border: 1px solid #e5e7e8;
+      border-radius: 22px;
+      background: var(--soft-gray);
+    }
+
+    .wa-toc h2 {
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 19px;
+      line-height: 1.5;
+      font-weight: 760;
+    }
+
+    .wa-toc ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .wa-section {
+      margin: 0 0 76px;
+    }
+
+    .wa-kicker {
+      margin: 0 0 10px;
+      color: #1381af;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .wa-section h2 {
+      margin: 0 0 20px;
+      color: var(--ink);
+      font-size: clamp(24px, 4vw, 31px);
+      line-height: 1.36;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .wa-section h3 {
+      margin: 34px 0 12px;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1.46;
+      font-weight: 740;
+    }
+
+    .water-article p {
+      margin: 0 0 24px;
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .wa-quote,
+    .wa-note {
+      margin: 30px 0;
+      padding: 22px 24px;
+      border: 1px solid rgba(104, 198, 239, 0.34);
+      background: #fff;
+      color: #3e4f5a;
+      font-size: 19px;
+      line-height: 1.78;
+      font-weight: 680;
+    }
+
+    .wa-calc {
+      margin: 32px 0;
+      padding: 26px 24px;
+      border-radius: 18px;
+      background: #1f3342;
+      color: #fff;
+      text-align: center;
+    }
+
+    .wa-calc .wa-calc-label {
+      margin: 0 0 8px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .wa-calc .wa-calc-main {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.18;
+      font-weight: 820;
+      letter-spacing: 0;
+    }
+
+    .wa-calc .wa-calc-sub {
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .wa-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .wa-compare-card {
+      padding: 22px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .wa-compare-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .wa-compare-card p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.78;
+    }
+
+    .wa-table-wrap {
+      margin: 30px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .wa-table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid #e2ded4;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .wa-table th,
+    .wa-table td {
+      padding: 15px 16px;
+      border-right: 1px solid #e8e4da;
+      border-bottom: 1px solid #e8e4da;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .wa-table th {
+      background: var(--cream);
+      color: var(--ink);
+      font-weight: 760;
+    }
+
+    .wa-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .wa-table th:last-child,
+    .wa-table td:last-child {
+      border-right: 0;
+    }
+
+    .wa-mobile-cards {
+      display: none;
+      margin: 24px 0 0;
+    }
+
+    .wa-metric {
+      padding: 18px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      margin-bottom: 12px;
+    }
+
+    .wa-metric strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .wa-metric span {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
+    .wa-warning {
+      margin: 30px 0;
+      padding: 24px 24px;
+      border: 1px solid var(--danger-line);
+      border-radius: 18px;
+      background: var(--danger-bg);
+      color: var(--danger-ink);
+    }
+
+    .wa-warning p {
+      margin-bottom: 16px;
+    }
+
+    .wa-warning p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wa-video-link {
+      display: block;
+      margin: 28px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .wa-video-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background:
+        linear-gradient(rgba(31, 51, 66, 0.2), rgba(31, 51, 66, 0.62)),
+        url("https://img.youtube.com/vi/jNXxXyxQx2Q/hqdefault.jpg") center / cover no-repeat;
+    }
+
+    .wa-video-play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: flex;
+      width: 72px;
+      height: 72px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #1f3342;
+      transform: translate(-50%, -50%);
+      font-size: 30px;
+      line-height: 1;
+      padding-left: 4px;
+    }
+
+    .wa-video-meta {
+      padding: 20px 22px;
+      background: #1f3342;
+    }
+
+    .wa-video-meta strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .wa-video-meta span {
+      display: block;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .wa-cta {
+      margin: 34px 0 0;
+      padding: 30px 26px;
+      border-radius: 22px;
+      background: #1f3342;
+      color: #fff;
+      text-align: left;
+    }
+
+    .wa-cta h2 {
+      margin: 0 0 14px;
+      color: #fff;
+      font-size: clamp(24px, 5vw, 32px);
+    }
+
+    .wa-cta p {
+      margin: 0 0 22px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .wa-cta a {
+      display: inline-flex;
+      max-width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: #dff8ff;
+      color: #153446;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-align: center;
+      text-decoration: none;
+      white-space: normal;
+    }
+
+    @media (max-width: 640px) {
+      .wa-wrap {
+        padding: 38px 20px 56px;
+      }
+
+      .wa-hero h1 {
+        font-size: 28px;
+      }
+
+      .wa-subtitle,
+      .wa-lead {
+        font-size: 16px;
+      }
+
+      .wa-image-slot {
+        min-height: 210px;
+        padding: 22px 18px;
+      }
+
+      .wa-toc {
+        padding: 24px 22px 26px;
+        border-radius: 20px;
+      }
+
+      .water-article p {
+        font-size: 16px;
+        line-height: 1.82;
+      }
+
+      .wa-quote,
+      .wa-note {
+        padding: 20px;
+        font-size: 17px;
+      }
+
+      .wa-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .wa-table-wrap {
+        display: none;
+      }
+
+      .wa-mobile-cards {
+        display: block;
+      }
+
+      .wa-section {
+        margin-bottom: 64px;
+      }
+
+      .wa-cta {
+        padding: 26px 22px;
+      }
+
+      .wa-cta a {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <main class="wa-wrap">
+    <section class="wa-hero">
+      <div class="wa-label">생수배송 수익구조 분석</div>
+      <h1>이 사진을 보면 월 700 버는 이유가 이해 될겁니다</h1>
+      <p class="wa-subtitle">"생수배송은 한 집 배달하고 900원 버는 일이다?"</p>
+
+      <div class="wa-lead">
+        생수배송의 핵심은 한 집에 얼마를 버느냐가 아니라, 한 번 갈 때 몇 팩을 내리느냐에 있습니다.
+      </div>
+    </section>
+
+    <nav class="wa-toc" aria-label="목차">
+      <h2>이 글에서 확인할 내용</h2>
+      <ol>
+        <li>생수배송의 핵심은 단가가 아니라 묶음 구조입니다</li>
+        <li>같은 900원이어도 결과가 달라지는 이유</li>
+        <li>일반 배송과 생수 배송의 소득 밀도 비교</li>
+        <li>일반 가정집에서도 묶음 물량은 일상입니다</li>
+        <li>생수배송의 현실적인 단점</li>
+        <li>내 조건에서 가능한지 확인해야 하는 이유</li>
+      </ol>
+    </nav>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Point 01</p>
+      <h2>생수배송의 핵심은 단가가 아니라 묶음 구조입니다</h2>
+
+      <div class="wa-quote">
+        "생수배송은 한 집 배달하고 900원 버는 일이다?"
+      </div>
+
+      <p>만약 이렇게만 계산하셨다면 완전히 틀렸습니다. 생수배송의 진짜 핵심은 단순히 '몇 가구를 방문하느냐'가 아니라, '한 번 갈 때 몇 팩을 내리느냐'에 있습니다.</p>
+
+      <p>실제 현장 사진을 통해 그 절대적인 소득 구조의 차이를 눈으로 확인해 보세요.</p>
+
+      <figure class="wa-figure">
+        <img src="https://i.ibb.co/GvHV1g37/2026-06-23-115834.png" alt="기업체 건물 앞에 생수가 무더기로 쌓인 현장 사례">
+        <figcaption class="wa-caption">기업체 건물 앞에 생수가 무더기로 쌓인 현장 사례</figcaption>
+      </figure>
+
+      <p>위 사진을 한번 자세히 봐주시기 바랍니다. 한 기업체의 건물 입구 앞에 생수가 무더기로 쌓여 있습니다.</p>
+
+      <p>"이 사진 속 생수가 한 팩당 수수료 900원이라면, 배송기사님이 이 건물 딱 한 곳을 방문해서 배달했을 때 총 얼마를 벌었을까요?"</p>
+
+      <p>눈으로 대충 보아도 500mL 묶음이 쌓여있죠? 위 사진처럼 20팩이라고만 가정해 보겠습니다.</p>
+
+      <div class="wa-calc">
+        <p class="wa-calc-label">실제 현장 정산 예시</p>
+        <p class="wa-calc-main">900원 × 20팩 = 18,000원</p>
+        <p class="wa-calc-sub">일반적인 오해: 한 곳 배달했으니 900원? 아닙니다.</p>
+      </div>
+
+      <p>단 한 번의 시동을 켜고, 단 한 곳의 목적지에 도착해서 물건을 내렸을 뿐인데 순식간에 18,000원의 배송 매출이 발생한 것입니다. 이것이 바로 광고에서 보셨던 '월 급여 750만 원, 오후 2~3시 퇴근'이 가능한 생수배송만의 독보적인 소득 밀도입니다.</p>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Point 02</p>
+      <h2>같은 900원이어도 결과가 달라지는 이유</h2>
+
+      <p>보통 배송업을 처음 알아보시는 분들은 알림톡이나 공고를 볼 때 '건당 단가'에만 집착하십니다. "일반 택배는 박스당 800~1,000원이고, 생수도 팩당 900원 수준이면 힘들게 생수를 할 이유가 없지 않나?" 라고 생각하시죠.</p>
+
+      <p>하지만 일반 택배나 새벽배송과 생수배송은 '한 가구당 발생하는 주문의 양' 자체가 완전히 다릅니다.</p>
+
+      <div class="wa-compare">
+        <article class="wa-compare-card">
+          <h3>일반 택배 / 새벽배송</h3>
+          <p>의류, 화장품, 소형 가전 등은 한 집에서 2~3개씩 동시에 주문하는 경우가 극히 드뭅니다. 보통 한 가구당 1박스 배송이 기본이며, 문 앞까지 가서 배송을 완료해야 겨우 1건의 단가를 인정받습니다.</p>
+        </article>
+        <article class="wa-compare-card">
+          <h3>생수 배송</h3>
+          <p>생수를 인터넷으로 시켜 먹는 소비자들은 기본 2팩에서 많게는 4팩, 6팩씩 묶어서 주문합니다. 문 앞까지 걸어가는 수고는 똑같은데, 한 번에 쌓이는 수수료는 2배, 4배, 6배로 커집니다.</p>
+        </article>
+      </div>
+
+      <div class="wa-note">
+        한 집에 얼마냐가 아니라, 한 번 멈췄을 때 몇 팩을 내리느냐가 생수배송 수익 구조의 핵심입니다.
+      </div>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Point 03</p>
+      <h2>일반 배송 vs 생수 배송 소득 밀도 비교표</h2>
+
+      <div class="wa-table-wrap">
+        <table class="wa-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>일반 탑차 배송 / 택배·새벽</th>
+              <th>생수 배송 / 묶음 구조 반영</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>평균 배송 가구 수</td>
+              <td>하루 200가구</td>
+              <td>하루 120가구</td>
+            </tr>
+            <tr>
+              <td>가구당 평균 배송량</td>
+              <td>1.1개 / 대부분 단품</td>
+              <td>2.5팩~3팩 / 묶음 주문</td>
+            </tr>
+            <tr>
+              <td>하루 총 처리 물량</td>
+              <td>약 220건</td>
+              <td>약 300~350팩</td>
+            </tr>
+            <tr>
+              <td>팩/건당 평균 수수료</td>
+              <td>900원</td>
+              <td>900원</td>
+            </tr>
+            <tr>
+              <td>하루 예상 매출</td>
+              <td>198,000원</td>
+              <td>270,000원 ~ 315,000원</td>
+            </tr>
+            <tr>
+              <td>특징</td>
+              <td>200번을 이동하고 내려야 함</td>
+              <td>120번만 이동해도 더 높은 매출 발생</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wa-mobile-cards" aria-label="모바일 비교 카드">
+        <div class="wa-metric">
+          <strong>평균 배송 가구 수</strong>
+          <span>일반 탑차 배송: 하루 200가구</span>
+          <span>생수 배송: 하루 120가구</span>
+        </div>
+        <div class="wa-metric">
+          <strong>가구당 평균 배송량</strong>
+          <span>일반 탑차 배송: 1.1개 / 대부분 단품</span>
+          <span>생수 배송: 2.5팩~3팩 / 묶음 주문</span>
+        </div>
+        <div class="wa-metric">
+          <strong>하루 총 처리 물량</strong>
+          <span>일반 탑차 배송: 약 220건</span>
+          <span>생수 배송: 약 300~350팩</span>
+        </div>
+        <div class="wa-metric">
+          <strong>하루 예상 매출</strong>
+          <span>일반 탑차 배송: 198,000원</span>
+          <span>생수 배송: 270,000원 ~ 315,000원</span>
+        </div>
+        <div class="wa-metric">
+          <strong>핵심 차이</strong>
+          <span>일반 탑차 배송은 200번을 이동하고 내려야 합니다.</span>
+          <span>생수 배송은 120번만 이동해도 더 높은 매출이 발생할 수 있습니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Point 04</p>
+      <h2>일반 가정집에서도 묶음 물량은 일상입니다</h2>
+
+      <figure class="wa-figure">
+        <img src="https://i.ibb.co/mrRLDY90/2026-06-23-120358.png" alt="아파트 복도 또는 일반 가정집 문 앞 생수 배송 사례">
+        <figcaption class="wa-caption">아파트 복도 또는 일반 가정집 문 앞 생수 배송 사례</figcaption>
+      </figure>
+
+      <p>위의 또 다른 사진, 아파트 복도 사례를 보십시오. 일반 가정집 문 앞에도 한 번에 4팩, 6팩씩 쌓이는 것이 일상입니다.</p>
+
+      <p>팩당 단가는 900원으로 같아 보일지 몰라도, 생수배송은 가구당 묶음으로 터지는 물량 덕분에 동선은 훨씬 짧아지고 체류 시간 대비 소득은 극대화됩니다. 하루에 200번 넘게 차를 세우고 내릴 필요 없이, 100~120군데만 촘촘하게 돌면 매출 30만 원 고지가 눈앞에 보이는 이유가 바로 여기에 있습니다.</p>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Reality Check</p>
+      <h2>하지만 생수배송은 분명히 힘든 일입니다</h2>
+
+      <div class="wa-warning">
+        <p>저희 배송인그룹은 높은 수익만을 강조하며 환상을 심어드리지 않습니다. 기획 원칙상 단점도 투명하게 말씀드립니다.</p>
+        <p>생수배송은 분명히 무겁고 체력적인 부담이 따르는 일입니다. 한 번에 여러 팩을 날라야 하니 초기 3개월 동안은 몸이 고되고 힘들 수밖에 없습니다. 아무나 편하게 앉아서 돈을 버는 마법 같은 일자리가 아닙니다.</p>
+      </div>
+
+      <p>하지만 내가 땀 흘린 만큼 확실한 보상이 따르고, '지입사기'나 '일자리 낚시' 없이 투명하게 매출 구조가 정산되는 일자리를 찾고 계신다면, 현재의 막힌 현금흐름과 소득 구조를 단기간에 바꿀 수 있는 가장 강력하고 현실적인 선택지인 것 또한 분명합니다.</p>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Review</p>
+      <h2>실제 기사님의 후기 영상</h2>
+      <p>현장 구조와 실제 기사님의 이야기를 영상으로도 확인해 보실 수 있습니다.</p>
+
+      <a class="wa-video-link" href="https://youtu.be/jNXxXyxQx2Q" target="_blank" rel="noopener">
+        <div class="wa-video-thumb" aria-hidden="true">
+          <div class="wa-video-play">▶</div>
+        </div>
+        <div class="wa-video-meta">
+          <strong>유튜브에서 후기 영상 보기</strong>
+          <span>구글 사이트 코드 삽입 환경에서는 영상이 새 창으로 열립니다.</span>
+        </div>
+      </a>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Proof</p>
+      <h2>수수료 구조를 직접 확인해보세요</h2>
+
+      <figure class="wa-figure">
+        <img src="https://i.ibb.co/JRyJCd21/Kakao-Talk-20260624-135620491.png" alt="실제 수수료 구조 확인 이미지">
+        <figcaption class="wa-caption">실제 수수료 구조 확인 이미지</figcaption>
+      </figure>
+    </section>
+
+    <section class="wa-section">
+      <p class="wa-kicker">Final Check</p>
+      <h2>가장 중요한 것은 내 조건에서 가능한지 확인하는 것입니다</h2>
+
+      <p>가장 중요한 것은 "내가 배정받을 지역에도 과연 이런 묶음 물량이 충분히 나오는가?", "차량이 없거나 초보자인데 나도 저 구조 속에서 살아남을 수 있는가?"를 검증하는 것입니다.</p>
+
+      <p>배송인그룹은 무조건 일을 시작하라고 등 떠밀지 않습니다. 지원자분의 면허 조건, 거주 지역의 권역 밀집도, 초기 비용 부담 여부를 종합적으로 분석하여 안전하게 진입할 수 있는 최적의 셋팅만을 필터링해 드립니다.</p>
+
+      <div class="wa-cta">
+        <h2>내 조건에서도 이 구조가 가능한지 확인해보세요</h2>
+        <p>아래 버튼을 눌러 지금 내 조건에서 이와 같은 소득 구조를 만들어낼 수 있는지 가볍게 확인해 보시기 바랍니다.</p>
+        <a href="https://sites.google.com/view/qothddls/%ED%99%88" target="_blank" rel="noopener">내 조건에서 생수배송 수익 구조 확인하기</a>
+      </div>
+    </section>
+  </main>
+</div>
