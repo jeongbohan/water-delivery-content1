@@ -1,3 +1,38 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>이 사진을 보면 월 700 버는 이유가 이해 될겁니다</title>
+  <meta name="description" content="생수배송은 한 집에 900원 버는 일이 아니라 묶음 물량 구조 때문에 소득 밀도가 높다는 내용을 설명하는 콘텐츠입니다.">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM7XGZ6SSD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GM7XGZ6SSD');
+  </script>
+
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
 <div class="water-article">
   <style>
     .water-article {
@@ -107,6 +142,12 @@
       max-width: 100%;
       height: auto;
       border: 0;
+    }
+
+    .wa-proof-image {
+      width: auto !important;
+      max-width: min(100%, 560px) !important;
+      margin: 0 auto;
     }
 
     .wa-caption {
@@ -342,61 +383,22 @@
       margin-bottom: 0;
     }
 
-    .wa-video-link {
-      display: block;
-      margin: 28px 0 0;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-      background: #111;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .wa-video-thumb {
+    .wa-video {
       position: relative;
-      aspect-ratio: 16 / 9;
-      background:
-        linear-gradient(rgba(31, 51, 66, 0.2), rgba(31, 51, 66, 0.62)),
-        url("https://img.youtube.com/vi/jNXxXyxQx2Q/hqdefault.jpg") center / cover no-repeat;
+      width: 100%;
+      margin: 28px 0 0;
+      padding-top: 56.25%;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #111;
     }
 
-    .wa-video-play {
+    .wa-video iframe {
       position: absolute;
-      left: 50%;
-      top: 50%;
-      display: flex;
-      width: 72px;
-      height: 72px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      color: #1f3342;
-      transform: translate(-50%, -50%);
-      font-size: 30px;
-      line-height: 1;
-      padding-left: 4px;
-    }
-
-    .wa-video-meta {
-      padding: 20px 22px;
-      background: #1f3342;
-    }
-
-    .wa-video-meta strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #fff;
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .wa-video-meta span {
-      display: block;
-      color: rgba(255, 255, 255, 0.74);
-      font-size: 14px;
-      line-height: 1.6;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     .wa-cta {
@@ -686,15 +688,14 @@
       <h2>실제 기사님의 후기 영상</h2>
       <p>현장 구조와 실제 기사님의 이야기를 영상으로도 확인해 보실 수 있습니다.</p>
 
-      <a class="wa-video-link" href="https://youtu.be/jNXxXyxQx2Q" target="_blank" rel="noopener">
-        <div class="wa-video-thumb" aria-hidden="true">
-          <div class="wa-video-play">▶</div>
-        </div>
-        <div class="wa-video-meta">
-          <strong>유튜브에서 후기 영상 보기</strong>
-          <span>구글 사이트 코드 삽입 환경에서는 영상이 새 창으로 열립니다.</span>
-        </div>
-      </a>
+      <div class="wa-video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/jNXxXyxQx2Q?rel=0&origin=https://jeongbohan.github.io"
+          title="실제 기사님의 후기 영상"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
     </section>
 
     <section class="wa-section">
@@ -702,7 +703,7 @@
       <h2>수수료 구조를 직접 확인해보세요</h2>
 
       <figure class="wa-figure">
-        <img src="https://i.ibb.co/JRyJCd21/Kakao-Talk-20260624-135620491.png" alt="실제 수수료 구조 확인 이미지">
+        <img class="wa-proof-image" src="https://i.ibb.co/JRyJCd21/Kakao-Talk-20260624-135620491.png" alt="실제 수수료 구조 확인 이미지">
         <figcaption class="wa-caption">실제 수수료 구조 확인 이미지</figcaption>
       </figure>
     </section>
@@ -723,3 +724,5 @@
     </section>
   </main>
 </div>
+</body>
+</html>
