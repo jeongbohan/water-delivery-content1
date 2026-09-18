@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>이동 중…</title>
+</head>
+<body>
+<script>
+(function () {
+  'use strict';
+  var p = new URLSearchParams(location.search);
+  var lead = p.get('l') || '';
+  var code = p.get('c') || '';
+  var routes = {
+    w1: ['https://jeongbohan.github.io/water-delivery-content1/', 'water_01'],
+    f1: ['https://jeongbohan.github.io/furniture-delivery-content1/', 'furniture_01'],
+    k1: ['https://jeongbohan.github.io/kurly-delivery-content1/', 'kurly_01']
+  };
+  if (!/^[A-Za-z0-9_-]{1,64}$/.test(lead) || !routes[code]) {
+    document.body.textContent = '올바르지 않은 링크입니다.';
+    return;
+  }
+  var route = routes[code];
+  var query = new URLSearchParams({
+    lead_id: lead,
+    content_id: route[1],
+    utm_source: 'solapi',
+    utm_medium: 'alimtalk',
+    utm_campaign: 'content_sequence_v2',
+    utm_content: route[1]
+  });
+  location.replace(route[0] + '?' + query.toString());
+}());
+</script>
+</body>
+</html>
