@@ -15,8 +15,20 @@
   var code = p.get('c') || '';
   var routes = {
     w1: ['https://jeongbohan.github.io/water-delivery-content1/', 'water_01'],
+    w2: ['https://jeongbohan.github.io/water-delivery-content2/', 'water_02'],
+    w3: ['https://jeongbohan.github.io/water-delivery-content3/', 'water_03'],
+    w4: ['https://jeongbohan.github.io/water-delivery-content4/', 'water_04'],
+    w5: ['https://jeongbohan.github.io/water-delivery-content5/', 'water_05'],
     f1: ['https://jeongbohan.github.io/furniture-delivery-content1/', 'furniture_01'],
-    k1: ['https://jeongbohan.github.io/kurly-delivery-content1/', 'kurly_01']
+    f2: ['https://jeongbohan.github.io/furniture-delivery-content2/', 'furniture_02'],
+    f3: ['https://jeongbohan.github.io/furniture-delivery-content3/', 'furniture_03'],
+    f4: ['https://jeongbohan.github.io/furniture-delivery-content4/', 'furniture_04'],
+    f5: ['https://jeongbohan.github.io/furniture-delivery-content5/', 'furniture_05'],
+    k1: ['https://jeongbohan.github.io/kurly-delivery-content1/', 'kurly_01'],
+    k2: ['https://jeongbohan.github.io/kurly-delivery-content2/', 'kurly_02'],
+    k3: ['https://jeongbohan.github.io/kurly-delivery-content3/', 'kurly_03'],
+    k4: ['https://jeongbohan.github.io/kurly-delivery-content4/', 'kurly_04'],
+    k5: ['https://jeongbohan.github.io/kurly-delivery-content5/', 'kurly_05']
   };
   if (!/^[A-Za-z0-9_-]{1,64}$/.test(lead) || !routes[code]) {
     document.body.textContent = '올바르지 않은 링크입니다.';
