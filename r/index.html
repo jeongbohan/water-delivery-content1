@@ -23,6 +23,8 @@
     f2: ['https://jeongbohan.github.io/furniture-delivery-content2/', 'furniture_02'],
     f3: ['https://jeongbohan.github.io/furniture-delivery-content3/', 'furniture_03'],
     f4: ['https://jeongbohan.github.io/furniture-delivery-content4/', 'furniture_04'],
+    f4a: ['https://jeongbohan.github.io/furniture-delivery-content4/experiment/a/', 'furniture_04', 'SC-20260930-furniture-04-001', 'a'],
+    f4b: ['https://jeongbohan.github.io/furniture-delivery-content4/experiment/b/', 'furniture_04', 'SC-20260930-furniture-04-001', 'b'],
     f5: ['https://jeongbohan.github.io/furniture-delivery-content5/', 'furniture_05'],
     k1: ['https://jeongbohan.github.io/kurly-delivery-content1/', 'kurly_01'],
     k2: ['https://jeongbohan.github.io/kurly-delivery-content2/', 'kurly_02'],
@@ -43,6 +45,11 @@
     utm_campaign: 'content_sequence_v2',
     utm_content: route[1]
   });
+  if (route[2]) {
+    query.set('experiment_id', route[2]);
+    query.set('variant', route[3]);
+    query.set('utm_content', route[1] + '_' + route[3]);
+  }
   location.replace(route[0] + '?' + query.toString());
 }());
 </script>
